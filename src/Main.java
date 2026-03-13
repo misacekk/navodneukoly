@@ -173,5 +173,45 @@ public class Main {
         } else {
             System.out.println("NE");
         }
+
+        boolean finalniKontrola = true;
+
+        for (int i = 0; i < 9; i++) {
+            if (kontrolujPole(pole[i]) == false) {
+                finalniKontrola = false;
+            }
+        }
+
+        for (int j = 0; j < 9; j++) {
+            int[] sloupec = new int[9];
+            for (int i = 0; i < 9; i++) {
+                sloupec[i] = pole[i][j];
+            }
+            if (kontrolujPole(sloupec) == false) {
+                finalniKontrola = false;
+            }
+        }
+
+        if (finalniKontrola) {
+            System.out.println("ANO");
+        } else {
+            System.out.println("NE");
+        }
+    }
+
+    public static boolean kontrolujPole(int[] pole) {
+        int[] pocty = new int[9];
+        for (int p : pole) {
+            if (p >= 1 && p <= 9) {
+                pocty[p - 1]++;
+            }
+        }
+        for (int i = 0; i < 9; i++) {
+            if (pocty[i] != 1) {
+                return false;
+            }
+        }
+        return true;
+
     }
 }
